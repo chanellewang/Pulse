@@ -1,27 +1,35 @@
-# ClinicalTrials.gov Search UI - Epic EMR Integration MVP
+# Pulse – AI-Powered Clinical Briefing Platform
 
-A web interface for searching clinical trials from ClinicalTrials.gov, integrated as a widget into an Epic EMR-style mockup interface.
+Pulse transforms fragmented EHR data into concise, actionable pre-visit briefings for physicians. By aggregating patient information from multiple sources and leveraging AI synthesis, Pulse reduces chart review time and ensures no critical information is missed.
 
 ## Features
 
-- 🤖 **AI-Powered Chatbot** - Intelligent assistant that summarizes and explains clinical trials
-- 🔍 Search clinical trials by condition, disease, or keyword
-- 📊 AI-generated summaries of clinical trial results
-- 💬 Conversational interface for asking questions about trials
-- 🎨 Epic EMR-style mockup interface
-- 🪟 Floating widget with minimize/maximize functionality
-- 🔗 Context-aware responses based on patient condition (colon cancer)
-- ⚡ Fast and efficient API integration
-- 🖱️ Draggable widget interface
+- 💊 **Pre-Visit Briefings** - Comprehensive patient summaries generated in seconds
+- 🔬 **FHIR Integration** - Imports patient data from FHIR-compliant EHR systems
+- 🤖 **AI Synthesis** - Intelligent analysis that prioritizes actionable insights
+- ⚠️ **Care Gap Detection** - Automatically identifies overdue screenings, missed exams, and pending actions
+- 📊 **Lab Trend Visualization** - Visual indicators for abnormal values and trends
+- 💊 **Medication Tracking** - Recent changes highlighted with drug interaction alerts
+- 👥 **Care Team Notes** - Consolidated specialist recommendations with priority tagging
+- 🏥 **Outside Care Records** - Integration of external facility visits and consultations
+- 🔊 **Audio Briefing** - Natural-sounding TTS for hands-free chart review
+- 📚 **Research Integration** - Surfaces relevant clinical studies based on patient conditions
+
+## Screenshots
+
+### Patient Briefing Dashboard
+The main dashboard provides a comprehensive overview of the patient's clinical status, including care gaps, labs, vitals, medications, and visit history.
+
+### AI Synthesis
+AI-generated summary highlighting key concerns and recommended actions for the visit.
 
 ## Files
 
-- `index.html` - Standalone clinical trials search interface
-- `epic-mockup.html` - Epic EMR mockup with integrated clinical trials widget
-- `app.js` - Clinical trials API integration logic
-- `epic-widget.js` - Widget minimize/maximize and drag functionality
-- `styles.css` - Styles for standalone interface
-- `epic-styles.css` - Styles for Epic mockup interface
+- `pulse.html` - Main clinical briefing dashboard
+- `pulse-briefing.js` - Dashboard logic, FHIR data processing, and AI synthesis
+- `pulse-briefing.css` - Styles for the briefing interface
+- `server.js` - Express server with OpenAI integration and FHIR proxy
+- `patient-profile.js` - Patient data management utilities
 
 ## Setup
 
@@ -42,51 +50,61 @@ npm start
 ```
 
 4. Open your browser and navigate to:
-   - **Epic Mockup with Chatbot**: `http://localhost:3000/epic-mockup.html`
-   - **Standalone UI**: `http://localhost:3000/index.html`
+   - **Pulse Dashboard**: `http://localhost:3000/pulse`
 
 ## Usage
 
-### Epic Mockup Interface with Chatbot
+### Clinical Briefing Workflow
 
-1. Open `epic-mockup.html` to see the Epic EMR-style interface
-2. The Clinical Trials Chatbot widget appears in the bottom-right corner
-3. The chatbot automatically searches for "colon cancer" trials when the page loads
-4. The AI assistant provides a comprehensive summary of available trials
-5. Ask questions in the chat interface, such as:
-   - "What are the most promising trials?"
-   - "Which trials are currently recruiting?"
-   - "Tell me about immunotherapy trials"
-   - "What are the eligibility criteria?"
-6. Click the minimize button (−) to collapse the widget
-7. Click the maximize button (+) to expand it again
-8. Drag the widget header to move it around the screen
+1. Open `http://localhost:3000/pulse` to access the Pulse dashboard
+2. Select a patient from the top navigation bar
+3. Review the pre-visit briefing:
+   - **Care Gaps & Action Items** - Prioritized list of items requiring attention
+   - **Labs & Imaging** - Recent results with trend indicators
+   - **Latest Vitals** - Current vital signs with alerts for abnormal values
+   - **Medication Changes** - Recent prescriptions and dosage adjustments
+   - **Last Visit & Plan** - Previous encounter summary and care plan
+   - **Outside Care** - Records from external facilities
+   - **Care Team Notes** - Specialist recommendations
+   - **Relevant Research** - AI-curated clinical studies
+4. Click any section header to view detailed information in a modal
+5. Use **Audio Brief** for a spoken summary of the patient
+6. Click **Start Visit** to transition to the active encounter
 
-### Standalone Interface
+### Customization
 
-1. Open `index.html` for a full-screen clinical trials search interface
-2. Enter search terms and use filters as needed
-3. View results in a clean, modern interface
+- Click **Customize** to toggle which sections appear on your dashboard
+- Preferences are saved locally for future sessions
 
-## Widget Features
+## Architecture
 
-- **Minimize/Maximize**: Toggle widget size with the control buttons
-- **Draggable**: Click and drag the widget header to reposition
-- **Responsive**: Adapts to different screen sizes
-- **Integrated**: Seamlessly integrated into Epic-style interface
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   FHIR Server   │────▶│  Pulse Server   │────▶│   OpenAI API    │
+│  (Patient Data) │     │   (Express.js)  │     │  (AI Synthesis) │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+                               │
+                               ▼
+                        ┌─────────────────┐
+                        │  Pulse Dashboard │
+                        │    (Browser)     │
+                        └─────────────────┘
+```
 
-## API
+## API Integrations
 
-This application uses the [ClinicalTrials.gov Data API](https://clinicaltrials.gov/data-api/api) to fetch clinical trial data.
+- **FHIR R4** - Patient data import from compliant EHR systems
+- **OpenAI GPT-4** - AI synthesis and natural language generation
+- **OpenAI TTS** - Text-to-speech for audio briefings
+- **ClinicalTrials.gov** - Relevant research article retrieval
 
 ## Technologies
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Node.js/Express (for local server and CORS proxy)
+- HTML5 / CSS3 / JavaScript
+- Node.js / Express
+- OpenAI API (GPT-4, TTS)
+- FHIR R4 Standard
 
 ## License
 
 MIT
-

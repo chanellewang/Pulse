@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EpicCare – Clinical Trials Research Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="epic-shell">
+        <header class="epic-top-bar">
+            <div class="epic-logo">Epic</div>
+            <nav class="epic-nav">
+                <span>Patient Lookup</span>
+                <span>OR Cases</span>
+                <span>House Census</span>
+                <span>UpToDate</span>
+                <span>Transfer Center</span>
+                <span>Staffed Beds</span>
+                <span>Anywhere RN</span>
+                <span>SlicerDicer</span>
+                <span>Reports</span>
+            </nav>
+            <div class="epic-actions">
+                <button>Print</button>
+                <button>Log Out</button>
+            </div>
+        </header>
+
+        <div class="epic-patient-header">
+            <div class="patient-title">
+                <div class="patient-name">CINDY W.</div>
+                <div class="module-name">EpicCare</div>
+            </div>
+            <div class="patient-tabs">
+                <button class="tab active">Summary</button>
+                <button class="tab">Chart Review</button>
+                <button class="tab">Results</button>
+                <button class="tab">Work List</button>
+                <button class="tab">MAR</button>
+                <button class="tab">Flowsheets</button>
+                <button class="tab">Intake/Output</button>
+                <button class="tab">Notes</button>
+                <button class="tab">Education</button>
+                <button class="tab">Care Plan</button>
+                <button class="tab">Orders</button>
+                <button class="tab">Charges</button>
+                <button class="tab">Navigators</button>
+                <button class="tab">DC Info</button>
+            </div>
+        </div>
+
+        <div class="epic-body">
+            <aside class="sidebar">
+                <div class="sidebar-section primary-diagnosis-section">
+                    <h4>Primary Diagnosis</h4>
+                    <div id="primaryDiagnosisInfo" class="diagnosis-info"></div>
+                </div>
+                <div class="sidebar-section">
+                    <h4>Precautions</h4>
+                    <ul id="precautionsList"></ul>
+                </div>
+                <div class="sidebar-section">
+                    <h4>Allergies</h4>
+                    <ul id="allergiesList"></ul>
+                </div>
+                <div class="sidebar-section">
+                    <h4>Attending</h4>
+                    <div id="attendingInfo" class="attending-info"></div>
+                </div>
+                <div class="sidebar-section">
+                    <h4>Pharmacy</h4>
+                    <div id="pharmacyInfo"></div>
+                </div>
+            </aside>
+
+            <main class="summary-panel">
+                <section class="card worklist-card">
+                    <div class="card-header">
+                        <h3>Work List Tasks</h3>
+                        <span class="date-range">12/06/20 0701 – 1901</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Task</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody id="workListTable"></tbody>
+                    </table>
+                </section>
+
+                <section class="card vitals-card">
+                    <div class="card-header">
+                        <h3>Vital Signs</h3>
+                        <a href="#" class="view-table">View Table</a>
+                    </div>
+                    <div class="vitals-grid" id="vitalsGrid"></div>
+                </section>
+
+                <section class="card treatment-card">
+                    <div class="card-header">
+                        <h3>Treatment Team</h3>
+                        <a href="#" class="view-table">Report</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Provider</th>
+                                <th>Relationship</th>
+                                <th>Specialty</th>
+                                <th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody id="treatmentTeamTable"></tbody>
+                    </table>
+                </section>
+
+                <section class="card careplan-card">
+                    <div class="card-header">
+                        <h3>Care Plan Problems / Goals</h3>
+                        <div class="card-actions">
+                            <a href="#">Show Details</a>
+                            <a href="#">Report</a>
+                        </div>
+                    </div>
+                    <div id="carePlanList" class="careplan-list"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Floating Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbotWidget">
+        <div class="widget-header" id="widgetHeader">
+            <div class="widget-title">
+                <span class="widget-icon">🔬</span>
+                <span>Clinical Trials Research Assistant</span>
+            </div>
+            <div class="widget-controls">
+                <button class="widget-btn minimize-btn" id="minimizeBtn" title="Minimize">−</button>
+                <button class="widget-btn close-btn" id="closeBtn" title="Close">×</button>
+            </div>
+        </div>
+
+        <div class="widget-content" id="widgetContent">
+            <div class="conditions-badge" id="conditionsBadge">
+                <div class="badge-label">Identified Conditions:</div>
+                <div id="identifiedConditions" class="conditions-list">
+                    <div class="analyzing">Lung cancer</div>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div id="chatMessages" class="chat-messages"></div>
+                <div id="chatLoading" class="chat-loading hidden">
+                    <div class="spinner-small"></div>
+                    <span>Thinking...</span>
+                </div>
+                <div class="chat-input-container">
+                    <input 
+                        type="text" 
+                        id="chatInput" 
+                        placeholder="Ask about the patient, conditions, or clinical trials..."
+                        autocomplete="off"
+                    >
+                    <button id="sendBtn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+
+            <div id="trialsSection" class="trials-section hidden">
+                <div class="trials-header">
+                    <h3>Relevant Clinical Trials</h3>
+                    <button class="toggle-trials" id="toggleTrials">Collapse</button>
+                </div>
+                <div id="trialsList" class="trials-list"></div>
+            </div>
+        </div>
+
+        <div class="widget-minimized hidden" id="widgetMinimized">
+            <span class="widget-icon">🔬</span>
+            <span>Clinical Trials Assistant</span>
+            <button class="widget-btn restore-btn" id="restoreBtn" title="Restore">+</button>
+        </div>
+    </div>
+
+    <script src="widget-controls.js"></script>
+    <script src="patient-profile.js"></script>
+    <script src="ui.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
+

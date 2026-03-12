@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperspace - FAMILY MEDICINE, VCC - CASEY BILLINGS</title>
+    <link rel="stylesheet" href="epic-styles.css">
+    <link rel="stylesheet" href="pulse-styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="epic-top-bar">
+        <div class="epic-logo">Epic</div>
+        <div class="epic-nav-tabs">
+            <button class="nav-tab" onclick="showTopNavContent('patientLookup')">Patient Lookup</button>
+            <button class="nav-tab" onclick="showTopNavContent('orCases')">OR Cases</button>
+            <button class="nav-tab" onclick="showTopNavContent('houseCensus')">House Census</button>
+            <button class="nav-tab" onclick="window.open('https://www.uptodate.com', '_blank')">UpToDate</button>
+            <button class="nav-tab" onclick="showTopNavContent('transferCenter')">Transfer Center</button>
+            <button class="nav-tab" onclick="showTopNavContent('staffedBeds')">Staffed Beds</button>
+            <button class="nav-tab" onclick="showTopNavContent('anywhereRN')">Anywhere RN</button>
+            <button class="nav-tab" onclick="showTopNavContent('slicerDicer')">SlicerDicer</button>
+            <button class="nav-tab" onclick="showTopNavContent('reports')">Reports</button>
+        </div>
+        <div class="epic-top-controls">
+            <button class="epic-btn" onclick="printPage()">Print</button>
+            <button class="epic-btn" onclick="confirmLogout()">Log Out</button>
+            <span class="epic-user-name">CINDY W.</span>
+            <div class="epic-care-logo">EpicCare</div>
+        </div>
+    </div>
+
+    <!-- Second Navigation Bar -->
+    <div class="epic-second-nav">
+        <div class="epic-tabs-container">
+            <button class="epic-tab active" data-tab="summary" onclick="switchMainTab('summary', this)">Summary</button>
+            <button class="epic-tab" data-tab="chartReview" onclick="switchMainTab('chartReview', this)">Chart Review</button>
+            <button class="epic-tab" data-tab="results" onclick="switchMainTab('results', this)">Results</button>
+            <button class="epic-tab" data-tab="workList" onclick="switchMainTab('workList', this)">Work List</button>
+            <button class="epic-tab" data-tab="mar" onclick="switchMainTab('mar', this)">MAR</button>
+            <button class="epic-tab" data-tab="flowsheets" onclick="switchMainTab('flowsheets', this)">Flowsheets</button>
+            <button class="epic-tab" data-tab="intakeOutput" onclick="switchMainTab('intakeOutput', this)">Intake/Output</button>
+            <button class="epic-tab" data-tab="notes" onclick="switchMainTab('notes', this)">Notes</button>
+            <button class="epic-tab" data-tab="education" onclick="switchMainTab('education', this)">Education</button>
+            <button class="epic-tab" data-tab="carePlan" onclick="switchMainTab('carePlan', this)">Care Plan</button>
+            <button class="epic-tab" data-tab="orders" onclick="switchMainTab('orders', this)">Orders</button>
+            <button class="epic-tab" data-tab="charges" onclick="switchMainTab('charges', this)">Charges</button>
+            <button class="epic-tab" data-tab="navigators" onclick="switchMainTab('navigators', this)">Navigators</button>
+            <button class="epic-tab" data-tab="dcInfo" onclick="switchMainTab('dcInfo', this)">DC Info</button>
+        </div>
+        <div class="epic-search-container">
+            <input type="text" class="epic-index-search" placeholder="Index" />
+        </div>
+    </div>
+
+    <!-- Patient Header -->
+    <div class="patient-header">
+        <div class="patient-info-left">
+            <h2>PETERSON, CINDY</h2>
+            <div class="patient-details">
+                <span>ID: 28491, Personal/Family</span>
+                <span>EPIC MEDICAL CENTER</span>
+                <span>DOB 12/22/1985</span>
+                <span>Status: Active</span>
+                <span>Last Stmt: 01/16/2012</span>
+                <span class="patient-condition">Condition: Lung Cancer</span>
+            </div>
+        </div>
+        <div class="patient-info-right">
+            <div class="contact-info">
+                <span>Home Phone: 608-555-2344</span>
+                <span>Work Phone: 608-555-4012</span>
+            </div>
+            <div class="balances">
+                <span class="balance-item">Insurance: <strong>$319.00</strong></span>
+                <span class="balance-item">Self-pay: <strong>$20.00</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="epic-body">
+        <!-- Left Sidebar -->
+        <aside class="epic-sidebar">
+            <input type="text" class="sidebar-search" placeholder="Search..." />
+            <div class="sidebar-section">
+                <h4>PRECAUTIONS</h4>
+                <div class="precaution-item">Fall precautions</div>
+                <div class="precaution-item">Organism: None</div>
+            </div>
+            <div class="sidebar-section">
+                <h4>ATTENDING</h4>
+                <div class="attending-info">Zeller, Timothy Aaron, MD</div>
+            </div>
+            <div class="sidebar-section">
+                <h4>ALLERGIES</h4>
+                <div class="allergy-item">Codeine</div>
+                <div class="allergy-item">Penicillins</div>
+            </div>
+            <div class="sidebar-section">
+                <h4>PHARMACY</h4>
+                <div class="pharmacy-info">Yes - Hover for Details</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="epic-main-content">
+            <!-- TAB PANEL: Summary (Default) -->
+            <div class="tab-panel active" id="tabPanel-summary">
+                <!-- Sub-tabs -->
+                <div class="epic-sub-tabs" id="summarySubTabs">
+                    <button class="sub-tab active" data-subtab="overview" onclick="switchSubTab('overview', this)">Overview</button>
+                    <button class="sub-tab" data-subtab="index" onclick="switchSubTab('index', this)">Index</button>
+                    <button class="sub-tab" data-subtab="sbarHandoff" onclick="switchSubTab('sbarHandoff', this)">SBAR Handoff</button>
+                    <button class="sub-tab" data-subtab="compFlowsheet" onclick="switchSubTab('compFlowsheet', this)">Comp Flowsheet</button>
+                    <button class="sub-tab" data-subtab="cosign" onclick="switchSubTab('cosign', this)">Cosign</button>
+                    <button class="sub-tab" data-subtab="activeOrders" onclick="switchSubTab('activeOrders', this)">Active Orders</button>
+                    <button class="sub-tab" data-subtab="fimAssessment" onclick="switchSubTab('fimAssessment', this)">FIM Assessment</button>
+                </div>
+
+                <!-- Content Cards -->
+            <div class="epic-content-grid">
+                <!-- Primary Diagnosis Card (Top-Left) -->
+                <div class="epic-card diagnosis-card diagnosis-highlight">
+                    <div class="card-header">
+                        <h3>Primary Diagnosis</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="diagnosis-header">
+                            <div class="diagnosis-pill">Primary Diagnosis • Lung Cancer</div>
+                            <span class="diagnosis-date">Diagnosed 01/10/2012 • Stage IIIB</span>
+                        </div>
+                        <div class="diagnosis-main">
+                            <div class="diagnosis-condition">
+                                <span class="diagnosis-label">Lung Cancer</span>
+                                <span class="diagnosis-stage">Stage IIIB</span>
+                            </div>
+                            <span class="diagnosis-status status-active">Active</span>
+                        </div>
+                        <p class="diagnosis-subtext">Primary cancer driving this admission. Prioritize oncology planning and clinical trial eligibility review.</p>
+                    </div>
+                </div>
+
+                <!-- Quick View Card -->
+                <div class="epic-card">
+                    <div class="card-header">
+                        <h3>Quick View</h3>
+                    </div>
+                    <div class="card-content">
+                        <a href="#" class="card-link">Comprehensive SBAR Flowsheet</a>
+                        <a href="#" class="card-link">ED Patient Care Timeline</a>
+                        <a href="#" class="card-link">Medical, Surgical, Social, and Family History</a>
+                        <a href="#" class="card-link">Care Plan and Patient Education</a>
+                        <a href="#" class="card-link">Blood Transfusion</a>
+                    </div>
+                </div>
+
+                <!-- Orders Card -->
+                <div class="epic-card">
+                    <div class="card-header">
+                        <h3>Orders</h3>
+                    </div>
+                    <div class="card-content">
+                        <a href="#" class="card-link">Active Orders</a>
+                        <a href="#" class="card-link">Medication Administration</a>
+                        <a href="#" class="card-link">Cancel Individual Lab Collections</a>
+                    </div>
+                </div>
+
+                <!-- Medications Card -->
+                <div class="epic-card">
+                    <div class="card-header">
+                        <h3>Medications</h3>
+                    </div>
+                    <div class="card-content">
+                        <a href="#" class="card-link">Current Meds</a>
+                        <a href="#" class="card-link">Medication History</a>
+                        <a href="#" class="card-link">Anti-Coagulation Dosing</a>
+                        <a href="#" class="card-link">Fever/Antibiotic Dosing</a>
+                        <a href="#" class="card-link">Glucose Monitoring</a>
+                        <a href="#" class="card-link">Pain Monitoring</a>
+                    </div>
+                </div>
+
+                <!-- Results Card -->
+                <div class="epic-card">
+                    <div class="card-header">
+                        <h3>Results</h3>
+                    </div>
+                    <div class="card-content">
+                        <a href="#" class="card-link">Labs - Last 72 Hours</a>
+                        <a href="#" class="card-link">Labs - Entire Admission</a>
+                        <a href="#" class="card-link">Labs - Unresulted</a>
+                        <a href="#" class="card-link">Microbiology Results</a>
+                        <a href="#" class="card-link">Radiology Results</a>
+                        <a href="#" class="card-link">PPD Results</a>
+                    </div>
+                </div>
+
+                <!-- Therapy Card -->
+                <div class="epic-card">
+                    <div class="card-header">
+                        <h3>Therapy</h3>
+                    </div>
+                    <div class="card-content">
+                        <a href="#" class="card-link">Therapy Flowsheet</a>
+                        <a href="#" class="card-link">PT Overview</a>
+                        <a href="#" class="card-link">OT Overview</a>
+                        <a href="#" class="card-link">SLP Overview</a>
+                        <a href="#" class="card-link">Rehab Nursing Flowsheet</a>
+                    </div>
+                </div>
+
+                <!-- Oncology Card -->
+                <div class="epic-card">
+                    <div class="card-header">
+                        <h3>Oncology</h3>
+                    </div>
+                    <div class="card-content">
+                        <a href="#" class="card-link" onclick="switchMainTab('orders', document.querySelector('[data-tab=orders]')); return false;">Oncology Summary</a>
+                        <a href="#" class="card-link">Treatment & Support Plan</a>
+                        <a href="#" class="card-link">Infusion Summary</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Summary -->
+
+            <!-- TAB PANEL: Chart Review -->
+            <div class="tab-panel" id="tabPanel-chartReview">
+                <div class="tab-panel-header">
+                    <h3>Chart Review</h3>
+                    <p>Review patient's complete medical history and documentation</p>
+                </div>
+                <div class="epic-content-grid">
+                    <div class="epic-card">
+                        <div class="card-header"><h3>Progress Notes</h3></div>
+                        <div class="card-content">
+                            <div class="chart-entry">
+                                <span class="entry-date">01/16/2012 14:30</span>
+                                <span class="entry-author">Dr. Timothy Zeller - Oncology</span>
+                                <p class="entry-preview">Cycle 3 follow-up: Patient tolerating FOLFOX with improved nausea control...</p>
+                            </div>
+                            <div class="chart-entry">
+                                <span class="entry-date">01/10/2012 09:15</span>
+                                <span class="entry-author">Dr. Anna Gold - Primary Care</span>
+                                <p class="entry-preview">Referral to oncology for newly diagnosed lung cancer...</p>
+                            </div>
+                            <div class="chart-entry">
+                                <span class="entry-date">01/01/2012 22:45</span>
+                                <span class="entry-author">ED Physician</span>
+                                <p class="entry-preview">Patient presents with severe nausea and dehydration post-chemotherapy...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="epic-card">
+                        <div class="card-header"><h3>Imaging Reports</h3></div>
+                        <div class="card-content">
+                            <a href="#" class="card-link">Chest CT (01/10/2012) - Stable disease</a>
+                            <a href="#" class="card-link">PET-CT (12/20/2011) - Stage IIIB confirmed</a>
+                            <a href="#" class="card-link">Chest X-Ray (12/15/2011) - Initial finding</a>
+                        </div>
+                    </div>
+                    <div class="epic-card">
+                        <div class="card-header"><h3>Pathology</h3></div>
+                        <div class="card-content">
+                            <a href="#" class="card-link">Lung Biopsy (12/18/2011) - NSCLC confirmed</a>
+                            <a href="#" class="card-link">Molecular Testing - EGFR negative, ALK negative</a>
+                        </div>
+                    </div>
+                    <div class="epic-card">
+                        <div class="card-header"><h3>Consultations</h3></div>
+                        <div class="card-content">
+                            <a href="#" class="card-link">Oncology Consult (01/10/2012)</a>
+                            <a href="#" class="card-link">Pulmonology Consult (12/20/2011)</a>
+                            <a href="#" class="card-link">Palliative Care Consult (01/15/2012)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Chart Review -->
+
+            <!-- TAB PANEL: Results -->
+            <div class="tab-panel" id="tabPanel-results">
+                <div class="tab-panel-header">
+                    <h3>Laboratory & Test Results</h3>
+                    <p>View all lab work, imaging, and diagnostic test results</p>
+                </div>
+                <div class="results-table-container">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Test</th>
+                                <th>Result</th>
+                                <th>Units</th>
+                                <th>Reference</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="result-abnormal">
+                                <td>CEA</td>
+                                <td><strong>5.2</strong> <span class="flag-high">H</span></td>
+                                <td>ng/mL</td>
+                                <td>0-3</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                            <tr>
+                                <td>WBC</td>
+                                <td>6.2</td>
+                                <td>K/μL</td>
+                                <td>4-11</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                            <tr>
+                                <td>Hemoglobin</td>
+                                <td>12.8</td>
+                                <td>g/dL</td>
+                                <td>12-16</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                            <tr>
+                                <td>Platelets</td>
+                                <td>245</td>
+                                <td>K/μL</td>
+                                <td>150-400</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                            <tr>
+                                <td>Creatinine</td>
+                                <td>0.9</td>
+                                <td>mg/dL</td>
+                                <td>0.6-1.2</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                            <tr>
+                                <td>eGFR</td>
+                                <td>85</td>
+                                <td>mL/min</td>
+                                <td>>60</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                            <tr>
+                                <td>ALT</td>
+                                <td>28</td>
+                                <td>U/L</td>
+                                <td>7-56</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                            <tr>
+                                <td>AST</td>
+                                <td>24</td>
+                                <td>U/L</td>
+                                <td>10-40</td>
+                                <td>01/16/2012</td>
+                                <td><span class="status-final">Final</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Results -->
+
+            <!-- TAB PANEL: Work List -->
+            <div class="tab-panel" id="tabPanel-workList">
+                <div class="tab-panel-header">
+                    <h3>Work List</h3>
+                    <p>Pending tasks and items requiring attention</p>
+                </div>
+                <div class="worklist-container">
+                    <div class="worklist-item worklist-urgent">
+                        <span class="worklist-time">1555</span>
+                        <span class="worklist-task">Re-check PRN Med (type, reason, follow-up/score required)</span>
+                        <span class="worklist-status">Timed</span>
+                    </div>
+                    <div class="worklist-item">
+                        <span class="worklist-time">PRN</span>
+                        <span class="worklist-task">Review chemotherapy labs before infusion</span>
+                        <span class="worklist-status">Routine</span>
+                    </div>
+                    <div class="worklist-item">
+                        <span class="worklist-time">AM</span>
+                        <span class="worklist-task">Vital signs assessment</span>
+                        <span class="worklist-status">Complete</span>
+                    </div>
+                    <div class="worklist-item">
+                        <span class="worklist-time">1200</span>
+                        <span class="worklist-task">Administer ondansetron pre-chemo</span>
+                        <span class="worklist-status">Complete</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Work List -->
+
+            <!-- TAB PANEL: MAR -->
+            <div class="tab-panel" id="tabPanel-mar">
+                <div class="tab-panel-header">
+                    <h3>Medication Administration Record</h3>
+                    <p>Track medication administration and schedules</p>
+                </div>
+                <div class="mar-container">
+                    <table class="mar-table">
+                        <thead>
+                            <tr>
+                                <th>Medication</th>
+                                <th>Dose</th>
+                                <th>Route</th>
+                                <th>0600</th>
+                                <th>0800</th>
+                                <th>1200</th>
+                                <th>1600</th>
+                                <th>2000</th>
+                                <th>2200</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ondansetron</strong></td>
+                                <td>8mg</td>
+                                <td>PO</td>
+                                <td class="mar-given">✓</td>
+                                <td></td>
+                                <td></td>
+                                <td class="mar-due">DUE</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dexamethasone</strong></td>
+                                <td>4mg</td>
+                                <td>PO</td>
+                                <td class="mar-given">✓</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lorazepam</strong></td>
+                                <td>0.5mg</td>
+                                <td>PO</td>
+                                <td colspan="6" class="mar-prn">PRN Anxiety</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Multivitamin</strong></td>
+                                <td>1 tab</td>
+                                <td>PO</td>
+                                <td></td>
+                                <td class="mar-given">✓</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TAB PANEL: MAR -->
+
+            <!-- TAB PANEL: Flowsheets -->
+            <div class="tab-panel" id="tabPanel-flowsheets">
+                <div class="tab-panel-header">
+                    <h3>Flowsheets</h3>
+                    <p>Clinical documentation and trending data</p>
+                </div>
+                <div class="flowsheet-container">
+                    <h4>Vital Signs Trend</h4>
+                    <table class="flowsheet-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>01/16 08:00</th>
+                                <th>01/16 12:00</th>
+                                <th>01/16 16:00</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BP</td>
+                                <td>128/82</td>
+                                <td>124/78</td>
+                                <td>126/80</td>
+                            </tr>
+                            <tr>
+                                <td>HR</td>
+                                <td>72</td>
+                                <td>75</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>Temp</td>
+                                <td>98.6°F</td>
+                                <td>98.4°F</td>
+                                <td>98.5°F</td>
+                            </tr>
+                            <tr>
+                                <td>SpO2</td>
+                                <td>98%</td>
+                                <td>99%</td>
+                                <td>98%</td>
+                            </tr>
+                            <tr>
+                                <td>Pain</td>
+                                <td>2/10</td>
+                                <td>3/10</td>
+                                <td>2/10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Flowsheets -->
+
+            <!-- TAB PANEL: Intake/Output -->
+            <div class="tab-panel" id="tabPanel-intakeOutput">
+                <div class="tab-panel-header">
+                    <h3>Intake/Output</h3>
+                    <p>Fluid balance monitoring</p>
+                </div>
+                <div class="io-container">
+                    <div class="io-summary">
+                        <div class="io-box io-intake">
+                            <h4>Total Intake</h4>
+                            <span class="io-value">1850 mL</span>
+                        </div>
+                        <div class="io-box io-output">
+                            <h4>Total Output</h4>
+                            <span class="io-value">1620 mL</span>
+                        </div>
+                        <div class="io-box io-balance">
+                            <h4>Net Balance</h4>
+                            <span class="io-value io-positive">+230 mL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Intake/Output -->
+
+            <!-- TAB PANEL: Notes -->
+            <div class="tab-panel" id="tabPanel-notes">
+                <div class="tab-panel-header">
+                    <h3>Clinical Notes</h3>
+                    <p>Progress notes, assessments, and documentation</p>
+                </div>
+                <div class="notes-container">
+                    <div class="note-entry">
+                        <div class="note-header">
+                            <span class="note-type">Progress Note</span>
+                            <span class="note-date">01/16/2012 14:30</span>
+                            <span class="note-author">Dr. Timothy Zeller, MD - Medical Oncology</span>
+                        </div>
+                        <div class="note-content">
+                            <p><strong>Chief Complaint:</strong> Chemotherapy cycle 4 assessment</p>
+                            <p><strong>HPI:</strong> Ms. Peterson is a 26-year-old female with Stage IIIB lung cancer who presents for cycle 4 chemotherapy assessment. She is currently on FOLFOX regimen and tolerating well with manageable nausea controlled by ondansetron.</p>
+                            <p><strong>Assessment:</strong> Responding to treatment. CEA improved from 8.4 to 5.2. Stable disease on imaging.</p>
+                            <p><strong>Plan:</strong> Proceed with cycle 4 chemotherapy today. Continue supportive care.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Notes -->
+
+            <!-- TAB PANEL: Education -->
+            <div class="tab-panel" id="tabPanel-education">
+                <div class="tab-panel-header">
+                    <h3>Patient Education</h3>
+                    <p>Educational materials and instructions</p>
+                </div>
+                <div class="education-container">
+                    <div class="education-item">
+                        <span class="education-icon">📄</span>
+                        <div class="education-content">
+                            <h4>Chemotherapy Side Effects</h4>
+                            <p>Information about managing nausea, fatigue, and other side effects</p>
+                            <span class="education-status">Provided 01/15/2012</span>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <span class="education-icon">📄</span>
+                        <div class="education-content">
+                            <h4>FOLFOX Regimen Guide</h4>
+                            <p>What to expect during and after treatment</p>
+                            <span class="education-status">Provided 01/15/2012</span>
+                        </div>
+                    </div>
+                    <div class="education-item education-pending">
+                        <span class="education-icon">📋</span>
+                        <div class="education-content">
+                            <h4>Advance Directive Information</h4>
+                            <p>Understanding your healthcare choices</p>
+                            <span class="education-status">Pending</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Education -->
+
+            <!-- TAB PANEL: Care Plan -->
+            <div class="tab-panel" id="tabPanel-carePlan">
+                <div class="tab-panel-header">
+                    <h3>Care Plan</h3>
+                    <p>Active problems, goals, and interventions</p>
+                </div>
+                <div class="careplan-container">
+                    <div class="careplan-item">
+                        <div class="careplan-problem">
+                            <h4>Lung Cancer</h4>
+                            <span class="careplan-status status-active">Active</span>
+                        </div>
+                        <div class="careplan-goal">
+                            <strong>Goal:</strong> Complete chemotherapy regimen with optimal response
+                        </div>
+                        <div class="careplan-interventions">
+                            <strong>Interventions:</strong>
+                            <ul>
+                                <li>Administer FOLFOX per protocol</li>
+                                <li>Monitor CEA levels</li>
+                                <li>Repeat imaging after cycle 6</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="careplan-item">
+                        <div class="careplan-problem">
+                            <h4>Chemotherapy Side Effects</h4>
+                            <span class="careplan-status status-controlled">Controlled</span>
+                        </div>
+                        <div class="careplan-goal">
+                            <strong>Goal:</strong> Manage nausea and fatigue to maintain quality of life
+                        </div>
+                        <div class="careplan-interventions">
+                            <strong>Interventions:</strong>
+                            <ul>
+                                <li>Ondansetron 8mg q8h PRN</li>
+                                <li>Dexamethasone with chemotherapy</li>
+                                <li>Encourage adequate hydration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Care Plan -->
+
+            <!-- TAB PANEL: Orders -->
+            <div class="tab-panel" id="tabPanel-orders">
+                <div class="tab-panel-header">
+                    <h3>Orders</h3>
+                    <p>Active and pending orders</p>
+                </div>
+                <div class="orders-container">
+                    <div class="order-item order-active">
+                        <span class="order-status">Active</span>
+                        <div class="order-details">
+                            <h4>FOLFOX Chemotherapy Protocol</h4>
+                            <p>Oxaliplatin, Leucovorin, 5-FU - Cycle 4</p>
+                            <span class="order-meta">Ordered by: Dr. Zeller | 01/22/2012</span>
+                        </div>
+                    </div>
+                    <div class="order-item order-active">
+                        <span class="order-status">Active</span>
+                        <div class="order-details">
+                            <h4>Ondansetron 8mg PO</h4>
+                            <p>Every 8 hours as needed for nausea</p>
+                            <span class="order-meta">Ordered by: Dr. Zeller | 01/02/2012</span>
+                        </div>
+                    </div>
+                    <div class="order-item order-pending">
+                        <span class="order-status">Pending</span>
+                        <div class="order-details">
+                            <h4>CBC with Differential</h4>
+                            <p>Pre-chemotherapy labs</p>
+                            <span class="order-meta">Ordered by: Dr. Zeller | 01/22/2012</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Orders -->
+
+            <!-- TAB PANEL: Charges -->
+            <div class="tab-panel" id="tabPanel-charges">
+                <div class="tab-panel-header">
+                    <h3>Charges</h3>
+                    <p>Billing and charge information</p>
+                </div>
+                <div class="charges-container">
+                    <table class="charges-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/16/2012</td>
+                                <td>Office Visit - Oncology Follow-up</td>
+                                <td>$250.00</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <td>01/16/2012</td>
+                                <td>Laboratory - CBC</td>
+                                <td>$45.00</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <td>01/16/2012</td>
+                                <td>Laboratory - CMP</td>
+                                <td>$65.00</td>
+                                <td>Pending</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Charges -->
+
+            <!-- TAB PANEL: Navigators -->
+            <div class="tab-panel" id="tabPanel-navigators">
+                <div class="tab-panel-header">
+                    <h3>Navigators</h3>
+                    <p>Clinical pathways and care coordination</p>
+                </div>
+                <div class="navigators-container">
+                    <div class="navigator-item">
+                        <h4>Oncology Navigator</h4>
+                        <p>Current Phase: Active Treatment - Chemotherapy Cycle 4</p>
+                        <div class="navigator-progress">
+                            <div class="progress-step completed">Diagnosis</div>
+                            <div class="progress-step completed">Staging</div>
+                            <div class="progress-step active">Treatment</div>
+                            <div class="progress-step">Surveillance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: Navigators -->
+
+            <!-- TAB PANEL: DC Info -->
+            <div class="tab-panel" id="tabPanel-dcInfo">
+                <div class="tab-panel-header">
+                    <h3>Discharge Information</h3>
+                    <p>Discharge planning and instructions</p>
+                </div>
+                <div class="dc-container">
+                    <div class="dc-section">
+                        <h4>Discharge Status</h4>
+                        <p class="dc-status">Outpatient - Same Day Discharge Expected</p>
+                    </div>
+                    <div class="dc-section">
+                        <h4>Follow-up Appointments</h4>
+                        <ul>
+                            <li>Oncology: 2 weeks (Cycle 5 assessment)</li>
+                            <li>Labs: 1 day prior to next visit</li>
+                        </ul>
+                    </div>
+                    <div class="dc-section">
+                        <h4>Discharge Instructions</h4>
+                        <ul>
+                            <li>Take ondansetron as prescribed for nausea</li>
+                            <li>Call if fever >100.4°F</li>
+                            <li>Stay well hydrated</li>
+                            <li>Avoid cold foods/drinks (neuropathy prevention)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END TAB PANEL: DC Info -->
+
+        </main>
+    </div>
+
+    <!-- Pulse Widget (Floating) -->
+    <div id="pulseWidget" class="pulse-widget pulse-collapsed">
+        <!-- Collapsed State Header -->
+        <div class="pulse-collapsed-header" id="pulseCollapsedHeader">
+            <div class="pulse-collapsed-content">
+                <div class="pulse-logo-small">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <div class="pulse-collapsed-info">
+                    <span class="pulse-brand">Pulse</span>
+                    <span class="pulse-patient-quick">PETERSON, CINDY</span>
+                </div>
+                <div class="pulse-diagnosis-badge-small">Lung Cancer</div>
+            </div>
+            <button class="pulse-expand-btn" onclick="togglePulseWidget()">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Expanded State -->
+        <div class="pulse-expanded" id="pulseExpanded">
+            <!-- Header -->
+            <div class="pulse-header" id="pulseHeader">
+                <div class="pulse-header-left">
+                    <div class="pulse-logo">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span>Pulse</span>
+                    </div>
+                    <span class="pulse-subtitle">Pre-Visit Summary</span>
+                </div>
+                <div class="pulse-header-controls">
+                    <button class="pulse-header-btn" onclick="openCustomizeModal()" title="Customize">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                        </svg>
+                    </button>
+                    <button class="pulse-header-btn" onclick="togglePulseWidget()" title="Collapse">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Patient Header - Always Visible -->
+            <div class="pulse-patient-header">
+                <div class="pulse-patient-main">
+                    <h2 class="pulse-patient-name" id="pulsePatientName">PETERSON, CINDY</h2>
+                    <div class="pulse-patient-details">
+                        <span class="pulse-patient-dob">DOB: 12/22/1985 (26y)</span>
+                        <span class="pulse-patient-mrn">MRN: 28491</span>
+                    </div>
+                </div>
+                <div class="pulse-diagnosis-main">
+                    <div class="pulse-diagnosis-badge" id="pulseDiagnosisBadge">
+                        <span class="pulse-diagnosis-icon">●</span>
+                        <span class="pulse-diagnosis-text">Lung Cancer</span>
+                        <span class="pulse-diagnosis-stage">Stage IIIB</span>
+                    </div>
+                </div>
+                <div class="pulse-badges">
+                    <div class="pulse-badge pulse-badge-allergy" title="Codeine, Penicillins">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                        <span>Allergies (2)</span>
+                    </div>
+                    <div class="pulse-badge pulse-badge-precaution" title="Fall precautions">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                        <span>Fall Risk</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scrollable Content -->
+            <div class="pulse-content" id="pulseContent">
+                <!-- Visit Context Section - Auto Expanded -->
+                <div class="pulse-section pulse-section-expanded" id="sectionVisitContext">
+                    <div class="pulse-section-header" onclick="toggleSection('sectionVisitContext')">
+                        <div class="pulse-section-title">
+                            <svg class="pulse-section-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
+                            </svg>
+                            <span>Visit Context</span>
+                        </div>
+                        <svg class="pulse-expand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="pulse-section-content">
+                        <div class="pulse-visit-reason">
+                            <span class="pulse-label">Reason for Visit</span>
+                            <span class="pulse-value pulse-value-highlight" id="pulseVisitReason">Chemotherapy cycle 4 assessment + labs</span>
+                        </div>
+                        <div class="pulse-visit-row">
+                            <div class="pulse-visit-item">
+                                <span class="pulse-label">Referring Provider</span>
+                                <span class="pulse-value" id="pulseReferringProvider">Dr. Anna Gold (PCP)</span>
+                            </div>
+                            <div class="pulse-visit-item">
+                                <span class="pulse-label">Attending</span>
+                                <span class="pulse-value">Dr. Timothy Zeller</span>
+                            </div>
+                        </div>
+                        <div class="pulse-last-visit">
+                            <div class="pulse-last-visit-header">
+                                <span class="pulse-label">Last Visit Summary</span>
+                                <span class="pulse-date" id="pulseLastVisitDate">01/16/2012</span>
+                                <a href="#" class="pulse-source-link" title="View in Chart Review > Notes">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                            <p class="pulse-summary-text" id="pulseLastVisitSummary">6-week follow-up. Patient tolerating FOLFOX well. Nausea improved with ondansetron. CEA decreased from 8.4→5.2 ng/mL. Continue current regimen. Chest CT showed stable disease.</p>
+                        </div>
+                        <div class="pulse-outside-event" id="pulseOutsideEvents">
+                            <div class="pulse-event-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                                <span>Outside Event</span>
+                            </div>
+                            <div class="pulse-event-content">
+                                <span class="pulse-event-date">01/01/2012</span>
+                                <span class="pulse-event-text">ED visit for severe nausea/dehydration - Resolved with IV fluids, ondansetron adjustment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Highlights Section - Auto Expanded -->
+                <div class="pulse-section pulse-section-expanded" id="sectionHighlights">
+                    <div class="pulse-section-header" onclick="toggleSection('sectionHighlights')">
+                        <div class="pulse-section-title">
+                            <svg class="pulse-section-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11 9h2V7h-2v2zm0 8h2v-6h-2v6zM5 3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5zm14 16H5V5h14v14z"/>
+                            </svg>
+                            <span>Quick Highlights</span>
+                        </div>
+                        <svg class="pulse-expand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="pulse-section-content">
+                        <!-- Labs Highlights -->
+                        <div class="pulse-highlight-group">
+                            <div class="pulse-highlight-header">
+                                <span class="pulse-highlight-title">Labs & Imaging</span>
+                                <a href="#" class="pulse-source-link" title="View in Results">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                            <div class="pulse-labs-grid" id="pulseLabsHighlights">
+                                <div class="pulse-lab-item pulse-lab-flagged">
+                                    <span class="pulse-lab-name">CEA</span>
+                                    <span class="pulse-lab-value">5.2 ng/mL</span>
+                                    <span class="pulse-lab-trend pulse-trend-down">↓ from 8.4</span>
+                                    <span class="pulse-lab-status pulse-lab-high">H</span>
+                                </div>
+                                <div class="pulse-lab-item">
+                                    <span class="pulse-lab-name">WBC</span>
+                                    <span class="pulse-lab-value">6.2 K/μL</span>
+                                    <span class="pulse-lab-trend pulse-trend-stable">→</span>
+                                </div>
+                                <div class="pulse-lab-item">
+                                    <span class="pulse-lab-name">Hgb</span>
+                                    <span class="pulse-lab-value">12.8 g/dL</span>
+                                    <span class="pulse-lab-trend pulse-trend-down">↓</span>
+                                </div>
+                                <div class="pulse-lab-item">
+                                    <span class="pulse-lab-name">Creat</span>
+                                    <span class="pulse-lab-value">0.9 mg/dL</span>
+                                    <span class="pulse-lab-trend pulse-trend-stable">→</span>
+                                </div>
+                            </div>
+                            <div class="pulse-imaging-item">
+                                <span class="pulse-imaging-type">Chest CT (01/10/2012)</span>
+                                <span class="pulse-imaging-result">Stable disease, no new lesions</span>
+                            </div>
+                        </div>
+
+                        <!-- Medication Changes -->
+                        <div class="pulse-highlight-group">
+                            <div class="pulse-highlight-header">
+                                <span class="pulse-highlight-title">Medication Changes</span>
+                                <a href="#" class="pulse-source-link" title="View in MAR">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                            <div class="pulse-med-change" id="pulseMedChanges">
+                                <div class="pulse-med-change-badge">Dose ↑</div>
+                                <span class="pulse-med-change-text">Ondansetron 4mg → 8mg q8h (01/02/2012)</span>
+                            </div>
+                        </div>
+
+                        <!-- Care Gaps -->
+                        <div class="pulse-highlight-group">
+                            <div class="pulse-highlight-header">
+                                <span class="pulse-highlight-title">Care Gaps</span>
+                            </div>
+                            <div class="pulse-care-gaps" id="pulseCareGaps">
+                                <div class="pulse-care-gap pulse-gap-high">
+                                    <span class="pulse-gap-priority">●</span>
+                                    <span class="pulse-gap-text">Advance Directive Discussion</span>
+                                    <span class="pulse-gap-due">Overdue</span>
+                                </div>
+                                <div class="pulse-care-gap pulse-gap-medium">
+                                    <span class="pulse-gap-priority">●</span>
+                                    <span class="pulse-gap-text">Flu Vaccine</span>
+                                    <span class="pulse-gap-due">Due this visit</span>
+                                </div>
+                                <div class="pulse-care-gap pulse-gap-low">
+                                    <span class="pulse-gap-priority">●</span>
+                                    <span class="pulse-gap-text">Smoking Cessation Follow-up</span>
+                                    <span class="pulse-gap-due">Scheduled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Medications Section - Collapsed by Default -->
+                <div class="pulse-section" id="sectionMedications">
+                    <div class="pulse-section-header" onclick="toggleSection('sectionMedications')">
+                        <div class="pulse-section-title">
+                            <svg class="pulse-section-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5 0 1.05-.46 1.99-1.2 2.63-.19.16-.32.4-.32.67v.2c0 .28-.22.5-.5.5h-3c-.28 0-.5-.22-.5-.5v-.2c0-.27-.13-.51-.32-.67-.74-.64-1.2-1.58-1.2-2.63C8.46 7.57 10.03 6 11.96 6H12zm1.5 10.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5v-1c0-.28.22-.5.5-.5h2c.28 0 .5.22.5.5v1z"/>
+                            </svg>
+                            <span>Current Medications (5)</span>
+                        </div>
+                        <svg class="pulse-expand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="pulse-section-content">
+                        <div class="pulse-meds-list" id="pulseMedsList">
+                            <div class="pulse-med-item">
+                                <div class="pulse-med-name">FOLFOX (Oxaliplatin, Leucovorin, 5-FU)</div>
+                                <div class="pulse-med-details">
+                                    <span>Per protocol, every 2 weeks</span>
+                                    <span class="pulse-med-date">Started 01/15/2012</span>
+                                </div>
+                            </div>
+                            <div class="pulse-med-item pulse-med-changed">
+                                <div class="pulse-med-name">Ondansetron 8mg <span class="pulse-med-change-indicator">↑</span></div>
+                                <div class="pulse-med-details">
+                                    <span>Every 8 hours PRN nausea</span>
+                                    <span class="pulse-med-date">Increased 01/02/2012</span>
+                                </div>
+                            </div>
+                            <div class="pulse-med-item">
+                                <div class="pulse-med-name">Lorazepam 0.5mg</div>
+                                <div class="pulse-med-details">
+                                    <span>PRN anxiety</span>
+                                    <span class="pulse-med-date">Started 01/10/2012</span>
+                                </div>
+                            </div>
+                            <div class="pulse-med-item">
+                                <div class="pulse-med-name">Dexamethasone 4mg</div>
+                                <div class="pulse-med-details">
+                                    <span>With chemotherapy</span>
+                                    <span class="pulse-med-date">Started 01/15/2012</span>
+                                </div>
+                            </div>
+                            <div class="pulse-med-item">
+                                <div class="pulse-med-name">Multivitamin</div>
+                                <div class="pulse-med-details">
+                                    <span>1 tablet daily</span>
+                                    <span class="pulse-med-date">Started 01/10/2012</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Labs Section - Collapsed by Default -->
+                <div class="pulse-section" id="sectionLabs">
+                    <div class="pulse-section-header" onclick="toggleSection('sectionLabs')">
+                        <div class="pulse-section-title">
+                            <svg class="pulse-section-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/>
+                            </svg>
+                            <span>Recent Labs</span>
+                            <div class="pulse-timeframe-selector" onclick="event.stopPropagation()">
+                                <button class="pulse-timeframe-btn" id="labsTimeframeBtn" onclick="toggleLabsTimeframeDropdown(event)">
+                                    <span id="labsTimeframeText">Last 3 months</span>
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="pulse-timeframe-dropdown" id="labsTimeframeDropdown">
+                                    <button class="pulse-timeframe-option" onclick="setLabsTimeframe(1)">Last 1 month</button>
+                                    <button class="pulse-timeframe-option" onclick="setLabsTimeframe(2)">Last 2 months</button>
+                                    <button class="pulse-timeframe-option pulse-timeframe-active" onclick="setLabsTimeframe(3)">Last 3 months</button>
+                                    <button class="pulse-timeframe-option" onclick="setLabsTimeframe(4)">Last 4 months</button>
+                                    <button class="pulse-timeframe-option" onclick="setLabsTimeframe(5)">Last 5 months</button>
+                                    <button class="pulse-timeframe-option" onclick="setLabsTimeframe(6)">Last 6 months</button>
+                                    <button class="pulse-timeframe-option" onclick="setLabsTimeframe(12)">Last 12 months</button>
+                                </div>
+                            </div>
+                        </div>
+                        <svg class="pulse-expand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="pulse-section-content">
+                        <div class="pulse-labs-table" id="pulseLabsTable">
+                            <div class="pulse-labs-row pulse-labs-header">
+                                <span>Test</span>
+                                <span>Value</span>
+                                <span>Date</span>
+                                <span>Trend</span>
+                                <span>Normal</span>
+                            </div>
+                            <div class="pulse-labs-row pulse-labs-flagged">
+                                <span>CEA</span>
+                                <span class="pulse-lab-value-cell">5.2 ng/mL <span class="pulse-flag-high">H</span></span>
+                                <span>01/16/12</span>
+                                <span class="pulse-trend-down">↓ (was 8.4)</span>
+                                <span>0-3</span>
+                            </div>
+                            <div class="pulse-labs-row">
+                                <span>WBC</span>
+                                <span>6.2 K/μL</span>
+                                <span>01/16/12</span>
+                                <span class="pulse-trend-stable">→</span>
+                                <span>4-11</span>
+                            </div>
+                            <div class="pulse-labs-row">
+                                <span>Hemoglobin</span>
+                                <span>12.8 g/dL</span>
+                                <span>01/16/12</span>
+                                <span class="pulse-trend-down">↓</span>
+                                <span>12-16</span>
+                            </div>
+                            <div class="pulse-labs-row">
+                                <span>Platelets</span>
+                                <span>245 K/μL</span>
+                                <span>01/16/12</span>
+                                <span class="pulse-trend-stable">→</span>
+                                <span>150-400</span>
+                            </div>
+                            <div class="pulse-labs-row">
+                                <span>Creatinine</span>
+                                <span>0.9 mg/dL</span>
+                                <span>01/16/12</span>
+                                <span class="pulse-trend-stable">→</span>
+                                <span>0.6-1.2</span>
+                            </div>
+                            <div class="pulse-labs-row">
+                                <span>eGFR</span>
+                                <span>85 mL/min</span>
+                                <span>01/16/12</span>
+                                <span class="pulse-trend-stable">→</span>
+                                <span>&gt;60</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Treatment Team Section - Collapsed by Default -->
+                <div class="pulse-section" id="sectionTeam">
+                    <div class="pulse-section-header" onclick="toggleSection('sectionTeam')">
+                        <div class="pulse-section-title">
+                            <svg class="pulse-section-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                            <span>Treatment Team</span>
+                        </div>
+                        <svg class="pulse-expand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="pulse-section-content">
+                        <div class="pulse-team-list" id="pulseTeamList">
+                            <div class="pulse-team-member pulse-team-primary">
+                                <div class="pulse-team-avatar">TZ</div>
+                                <div class="pulse-team-info">
+                                    <span class="pulse-team-name">Zeller, Timothy Aaron, MD</span>
+                                    <span class="pulse-team-role">Attending - Medical Oncology</span>
+                                </div>
+                                <a href="tel:864-482-3483" class="pulse-team-contact">864-482-3483</a>
+                            </div>
+                            <div class="pulse-team-member">
+                                <div class="pulse-team-avatar">WD</div>
+                                <div class="pulse-team-info">
+                                    <span class="pulse-team-name">Deas, Weldon Elizabeth, MD</span>
+                                    <span class="pulse-team-role">Resident - Family Medicine</span>
+                                </div>
+                                <a href="tel:864-482-3483" class="pulse-team-contact">864-482-3483</a>
+                            </div>
+                            <div class="pulse-team-member">
+                                <div class="pulse-team-avatar">JB</div>
+                                <div class="pulse-team-info">
+                                    <span class="pulse-team-name">Bagwell, Jessica, RN</span>
+                                    <span class="pulse-team-role">Primary Nurse - Oncology</span>
+                                </div>
+                                <span class="pulse-team-contact">Ext. 4521</span>
+                            </div>
+                            <div class="pulse-team-member">
+                                <div class="pulse-team-avatar">AG</div>
+                                <div class="pulse-team-info">
+                                    <span class="pulse-team-name">Gold, Anna, MD</span>
+                                    <span class="pulse-team-role">Primary Care Physician</span>
+                                </div>
+                                <a href="tel:608-555-1000" class="pulse-team-contact">608-555-1000</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialist Suggestions Section -->
+                <div class="pulse-section pulse-section-expanded" id="sectionSpecialistSuggestions">
+                    <div class="pulse-section-header" onclick="toggleSection('sectionSpecialistSuggestions')">
+                        <div class="pulse-section-title">
+                            <svg class="pulse-section-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
+                            </svg>
+                            <span>Specialist Suggestions</span>
+                            <span class="pulse-section-badge pulse-badge-new">New</span>
+                        </div>
+                        <svg class="pulse-expand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="pulse-section-content">
+                        <div class="pulse-suggestions-list" id="pulseSpecialistSuggestions">
+                            <!-- Oncology Suggestion -->
+                            <div class="pulse-suggestion-card pulse-suggestion-oncology">
+                                <div class="pulse-suggestion-header">
+                                    <div class="pulse-suggestion-avatar">TZ</div>
+                                    <div class="pulse-suggestion-source">
+                                        <span class="pulse-suggestion-name">Dr. Timothy Zeller</span>
+                                        <span class="pulse-suggestion-specialty">Medical Oncology</span>
+                                    </div>
+                                    <span class="pulse-suggestion-date">01/16/2012</span>
+                                </div>
+                                <div class="pulse-suggestion-content">
+                                    <p class="pulse-suggestion-text">Consider adding immunotherapy evaluation if disease progresses after cycle 6. Patient may be candidate for pembrolizumab based on PD-L1 status. Recommend checking PD-L1 expression if not already done.</p>
+                                    <div class="pulse-suggestion-tags">
+                                        <span class="pulse-suggestion-tag">Treatment Planning</span>
+                                        <span class="pulse-suggestion-tag">Immunotherapy</span>
+                                    </div>
+                                </div>
+                                <div class="pulse-suggestion-actions">
+                                    <button class="pulse-suggestion-action" onclick="acknowledgeSuggestion(this)" title="Acknowledge">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    </button>
+                                    <button class="pulse-suggestion-action" onclick="dismissSuggestion(this)" title="Dismiss">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Primary Care Suggestion -->
+                            <div class="pulse-suggestion-card pulse-suggestion-pcp">
+                                <div class="pulse-suggestion-header">
+                                    <div class="pulse-suggestion-avatar">AG</div>
+                                    <div class="pulse-suggestion-source">
+                                        <span class="pulse-suggestion-name">Dr. Anna Gold</span>
+                                        <span class="pulse-suggestion-specialty">Primary Care</span>
+                                    </div>
+                                    <span class="pulse-suggestion-date">01/14/2012</span>
+                                </div>
+                                <div class="pulse-suggestion-content">
+                                    <p class="pulse-suggestion-text">Please ensure advance directive discussion happens this visit. Patient expressed interest during last PCP visit but deferred to oncology team. Family is supportive and present today.</p>
+                                    <div class="pulse-suggestion-tags">
+                                        <span class="pulse-suggestion-tag">Care Planning</span>
+                                        <span class="pulse-suggestion-tag">Goals of Care</span>
+                                    </div>
+                                </div>
+                                <div class="pulse-suggestion-actions">
+                                    <button class="pulse-suggestion-action" onclick="acknowledgeSuggestion(this)" title="Acknowledge">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    </button>
+                                    <button class="pulse-suggestion-action" onclick="dismissSuggestion(this)" title="Dismiss">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Pharmacy Suggestion -->
+                            <div class="pulse-suggestion-card pulse-suggestion-pharmacy">
+                                <div class="pulse-suggestion-header">
+                                    <div class="pulse-suggestion-avatar">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5 0 1.05-.46 1.99-1.2 2.63-.19.16-.32.4-.32.67v.2c0 .28-.22.5-.5.5h-3c-.28 0-.5-.22-.5-.5v-.2c0-.27-.13-.51-.32-.67-.74-.64-1.2-1.58-1.2-2.63C8.46 7.57 10.03 6 11.96 6H12zm1.5 10.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5v-1c0-.28.22-.5.5-.5h2c.28 0 .5.22.5.5v1z"/></svg>
+                                    </div>
+                                    <div class="pulse-suggestion-source">
+                                        <span class="pulse-suggestion-name">Clinical Pharmacy</span>
+                                        <span class="pulse-suggestion-specialty">Oncology Pharmacy</span>
+                                    </div>
+                                    <span class="pulse-suggestion-date">01/15/2012</span>
+                                </div>
+                                <div class="pulse-suggestion-content">
+                                    <p class="pulse-suggestion-text">Renal function adequate for full-dose oxaliplatin. Consider magnesium supplementation if peripheral neuropathy worsens. Current antiemetic regimen appropriate - ondansetron dose increase working well.</p>
+                                    <div class="pulse-suggestion-tags">
+                                        <span class="pulse-suggestion-tag">Medication Review</span>
+                                        <span class="pulse-suggestion-tag">Dosing</span>
+                                    </div>
+                                </div>
+                                <div class="pulse-suggestion-actions">
+                                    <button class="pulse-suggestion-action" onclick="acknowledgeSuggestion(this)" title="Acknowledge">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    </button>
+                                    <button class="pulse-suggestion-action" onclick="dismissSuggestion(this)" title="Dismiss">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Nursing Suggestion -->
+                            <div class="pulse-suggestion-card pulse-suggestion-nursing">
+                                <div class="pulse-suggestion-header">
+                                    <div class="pulse-suggestion-avatar">JB</div>
+                                    <div class="pulse-suggestion-source">
+                                        <span class="pulse-suggestion-name">Jessica Bagwell, RN</span>
+                                        <span class="pulse-suggestion-specialty">Oncology Nursing</span>
+                                    </div>
+                                    <span class="pulse-suggestion-date">01/16/2012</span>
+                                </div>
+                                <div class="pulse-suggestion-content">
+                                    <p class="pulse-suggestion-text">Patient reports improved sleep since starting lorazepam PRN. Fatigue remains 5/10 but manageable. Recommend discussing fatigue management strategies and possible occupational therapy referral if impacts daily activities.</p>
+                                    <div class="pulse-suggestion-tags">
+                                        <span class="pulse-suggestion-tag">Symptom Management</span>
+                                        <span class="pulse-suggestion-tag">Quality of Life</span>
+                                    </div>
+                                </div>
+                                <div class="pulse-suggestion-actions">
+                                    <button class="pulse-suggestion-action" onclick="acknowledgeSuggestion(this)" title="Acknowledge">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    </button>
+                                    <button class="pulse-suggestion-action" onclick="dismissSuggestion(this)" title="Dismiss">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clinical Context Links -->
+                <div class="pulse-section" id="sectionContext">
+                    <div class="pulse-section-header" onclick="toggleSection('sectionContext')">
+                        <div class="pulse-section-title">
+                            <svg class="pulse-section-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                            </svg>
+                            <span>Clinical Context</span>
+                        </div>
+                        <svg class="pulse-expand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="pulse-section-content">
+                        <div class="pulse-context-links" id="pulseContextLinks">
+                            <a href="#" class="pulse-context-link" onclick="showContextPopover(event, 'nsclc')">
+                                <div class="pulse-context-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                                </div>
+                                <div class="pulse-context-text">
+                                    <span class="pulse-context-title">NSCLC Stage IIIB Guidelines (NCCN 2012)</span>
+                                    <span class="pulse-context-desc">Treatment recommendations</span>
+                                </div>
+                                <svg class="pulse-context-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                            </a>
+                            <a href="#" class="pulse-context-link" onclick="showContextPopover(event, 'folfox')">
+                                <div class="pulse-context-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5 0 1.05-.46 1.99-1.2 2.63-.19.16-.32.4-.32.67v.2c0 .28-.22.5-.5.5h-3c-.28 0-.5-.22-.5-.5v-.2c0-.27-.13-.51-.32-.67-.74-.64-1.2-1.58-1.2-2.63C8.46 7.57 10.03 6 11.96 6H12zm1.5 10.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5v-1c0-.28.22-.5.5-.5h2c.28 0 .5.22.5.5v1z"/></svg>
+                                </div>
+                                <div class="pulse-context-text">
+                                    <span class="pulse-context-title">FOLFOX Regimen Overview</span>
+                                    <span class="pulse-context-desc">Dosing and monitoring</span>
+                                </div>
+                                <svg class="pulse-context-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                            </a>
+                            <a href="#" class="pulse-context-link" onclick="showContextPopover(event, 'cea')">
+                                <div class="pulse-context-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/></svg>
+                                </div>
+                                <div class="pulse-context-text">
+                                    <span class="pulse-context-title">CEA Tumor Marker Interpretation</span>
+                                    <span class="pulse-context-desc">Understanding CEA trends</span>
+                                </div>
+                                <svg class="pulse-context-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Footer - Sticky -->
+            <div class="pulse-footer">
+                <button class="pulse-action-btn pulse-action-secondary" onclick="openCustomizeModal()">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                    <span>Customize</span>
+                </button>
+                <button class="pulse-action-btn pulse-action-primary" onclick="openDraftNoteModal()">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    <span>Draft Note</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customize Modal -->
+    <div id="customizeModal" class="pulse-modal" style="display: none;">
+        <div class="pulse-modal-overlay" onclick="closeCustomizeModal()"></div>
+        <div class="pulse-modal-content">
+            <div class="pulse-modal-header">
+                <h3>Customize Pulse Summary</h3>
+                <button class="pulse-modal-close" onclick="closeCustomizeModal()">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+            <div class="pulse-modal-body">
+                <div class="pulse-setting-group">
+                    <label class="pulse-setting-label">Labs Timeframe</label>
+                    <div class="pulse-radio-group">
+                        <label class="pulse-radio">
+                            <input type="radio" name="labsTimeframe" value="1" />
+                            <span>1 month</span>
+                        </label>
+                        <label class="pulse-radio">
+                            <input type="radio" name="labsTimeframe" value="3" checked />
+                            <span>3 months</span>
+                        </label>
+                        <label class="pulse-radio">
+                            <input type="radio" name="labsTimeframe" value="6" />
+                            <span>6 months</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="pulse-setting-group">
+                    <label class="pulse-setting-label">Notes to Include</label>
+                    <div class="pulse-checkbox-group">
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" checked />
+                            <span>Oncology</span>
+                        </label>
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" checked />
+                            <span>Primary Care</span>
+                        </label>
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" checked />
+                            <span>Emergency Department</span>
+                        </label>
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" />
+                            <span>Specialist</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="pulse-setting-group">
+                    <label class="pulse-setting-label">Number of Recent Notes</label>
+                    <select class="pulse-select">
+                        <option value="3">3 most recent</option>
+                        <option value="5" selected>5 most recent</option>
+                        <option value="10">10 most recent</option>
+                    </select>
+                </div>
+                <div class="pulse-setting-group">
+                    <label class="pulse-setting-label">Clinical Suggestions</label>
+                    <label class="pulse-toggle">
+                        <input type="checkbox" checked />
+                        <span class="pulse-toggle-slider"></span>
+                        <span class="pulse-toggle-label">Show clinical context suggestions</span>
+                    </label>
+                </div>
+                <div class="pulse-setting-group">
+                    <label class="pulse-setting-label">Auto-Expand Sections</label>
+                    <div class="pulse-checkbox-group">
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" checked />
+                            <span>Visit Context</span>
+                        </label>
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" checked />
+                            <span>Quick Highlights</span>
+                        </label>
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" />
+                            <span>Medications</span>
+                        </label>
+                        <label class="pulse-checkbox">
+                            <input type="checkbox" />
+                            <span>Labs</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="pulse-modal-footer">
+                <button class="pulse-btn pulse-btn-secondary" onclick="closeCustomizeModal()">Cancel</button>
+                <button class="pulse-btn pulse-btn-primary" onclick="saveCustomizeSettings()">Save Preferences</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Draft Note Modal -->
+    <div id="draftNoteModal" class="pulse-modal" style="display: none;">
+        <div class="pulse-modal-overlay" onclick="closeDraftNoteModal()"></div>
+        <div class="pulse-modal-content pulse-modal-large">
+            <div class="pulse-modal-header">
+                <h3>Draft Note - PETERSON, CINDY</h3>
+                <button class="pulse-modal-close" onclick="closeDraftNoteModal()">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+            <div class="pulse-modal-body pulse-note-body">
+                <div class="pulse-note-section">
+                    <div class="pulse-note-section-header">
+                        <h4>Chief Complaint</h4>
+                    </div>
+                    <div class="pulse-note-content" id="draftCC">
+                        Chemotherapy cycle 4 assessment + labs
+                    </div>
+                </div>
+                <div class="pulse-note-section">
+                    <div class="pulse-note-section-header">
+                        <h4>History of Present Illness (HPI)</h4>
+                        <button class="pulse-note-edit-btn" onclick="editNoteSection('hpi')">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                        </button>
+                    </div>
+                    <div class="pulse-note-content" id="draftHPI">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="pulse-note-section">
+                    <div class="pulse-note-section-header">
+                        <h4>Assessment and Plan</h4>
+                        <button class="pulse-note-edit-btn" onclick="editNoteSection('plan')">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                        </button>
+                    </div>
+                    <div class="pulse-note-content pulse-note-plan" id="draftPlan">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="pulse-modal-footer">
+                <button class="pulse-btn pulse-btn-secondary" onclick="closeDraftNoteModal()">Close</button>
+                <button class="pulse-btn pulse-btn-primary" onclick="copyDraftNote()">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    <span>Copy to Clipboard</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Popover -->
+    <div id="contextPopover" class="pulse-context-popover" style="display: none;">
+        <div class="pulse-popover-header">
+            <span class="pulse-popover-title" id="popoverTitle">Clinical Context</span>
+            <button class="pulse-popover-close" onclick="hideContextPopover()">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+        </div>
+        <div class="pulse-popover-body" id="popoverBody">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+        <div class="pulse-popover-footer">
+            <div class="pulse-popover-rating">
+                <span>Rate this summary:</span>
+                <div class="pulse-rating-stars">
+                    <button onclick="rateContext(1)">★</button>
+                    <button onclick="rateContext(2)">★</button>
+                    <button onclick="rateContext(3)">★</button>
+                    <button onclick="rateContext(4)">★</button>
+                    <button onclick="rateContext(5)">★</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="pulseToast" class="pulse-toast" style="display: none;">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="patient-profile.js"></script>
+    <script src="pulse-widget.js"></script>
+</body>
+</html>

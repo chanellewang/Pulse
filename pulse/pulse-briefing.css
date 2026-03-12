@@ -1524,7 +1524,18 @@ body {
     }
     
     .header-center {
-        display: none;
+        flex: none;
+        width: auto;
+        max-width: 50%;
+    }
+    
+    .patient-quick-select {
+        gap: 6px;
+    }
+    
+    .patient-chip {
+        padding: 4px 10px;
+        font-size: 0.75rem;
     }
     
     .care-gaps-grid {

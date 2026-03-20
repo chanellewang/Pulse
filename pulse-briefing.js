@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load patients from FHIR
 async function loadPatients() {
     try {
-        const response = await fetch('/test-fhir');
+        const response = await fetch('/api/test-fhir');
         const data = await response.json();
         
         if (data.entry && data.entry.length > 0) {

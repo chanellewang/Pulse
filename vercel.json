@@ -20,8 +20,8 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/pulse", "dest": "/pulse.html" },
-    { "src": "/", "dest": "/index.html" },
+    { "src": "/epic", "dest": "/index.html" },
+    { "src": "/", "dest": "/pulse.html" },
     { "src": "/(.*\\.css)", "dest": "/$1" },
     { "src": "/(.*\\.js)", "dest": "/$1" },
     { "src": "/(.*\\.html)", "dest": "/$1" }

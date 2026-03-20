@@ -1,10 +1,12 @@
 {
   "version": 2,
+  "buildCommand": "",
+  "outputDirectory": ".",
   "routes": [
+    { "handle": "filesystem" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/epic", "dest": "/index.html" },
-    { "src": "^/$", "dest": "/pulse.html" },
-    { "src": "/(.*)", "dest": "/$1" }
+    { "src": "/", "dest": "/pulse.html" }
   ],
   "functions": {
     "api/*.js": {

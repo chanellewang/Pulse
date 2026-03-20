@@ -1,29 +1,11 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
-      "use": "@vercel/static"
-    }
+  "rewrites": [
+    { "source": "/", "destination": "/pulse.html" },
+    { "source": "/epic", "destination": "/index.html" }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/epic", "dest": "/index.html" },
-    { "src": "/", "dest": "/pulse.html" },
-    { "src": "/(.*\\.css)", "dest": "/$1" },
-    { "src": "/(.*\\.js)", "dest": "/$1" },
-    { "src": "/(.*\\.html)", "dest": "/$1" }
-  ]
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 30
+    }
+  }
 }

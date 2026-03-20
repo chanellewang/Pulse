@@ -1,13 +1,21 @@
 {
   "version": 2,
-  "framework": null,
-  "installCommand": "echo 'skip install'",
-  "buildCommand": "echo 'skip build'",
-  "outputDirectory": ".",
-  "functions": {
-    "api/**/*.js": {
-      "maxDuration": 30,
-      "includeFiles": "api/**"
+  "builds": [
+    {
+      "src": "api/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "pulse-briefing.js",
+      "use": "@vercel/static"
     }
-  }
+  ]
 }

@@ -1,7 +1,10 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/pulse.html" },
-    { "source": "/epic", "destination": "/index.html" }
+  "version": 2,
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/epic", "dest": "/index.html" },
+    { "src": "^/$", "dest": "/pulse.html" },
+    { "src": "/(.*)", "dest": "/$1" }
   ],
   "functions": {
     "api/*.js": {

@@ -12,14 +12,14 @@ app.use(cors());
 // Parse JSON bodies
 app.use(express.json());
 
-// Serve Pulse briefing page as the main dashboard (BEFORE static middleware)
+// Serve Pulse dashboard as the main page (index.html)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pulse.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Keep old Epic UI accessible at /epic
+// Old Epic UI accessible at /epic (if needed)
 app.get('/epic', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'epic-old.html'));
 });
 
 // Serve static files from the root directory (AFTER explicit routes)

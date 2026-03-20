@@ -12,18 +12,18 @@ app.use(cors());
 // Parse JSON bodies
 app.use(express.json());
 
-// Serve static files from the root directory
-app.use(express.static(__dirname));
-
-// Serve index.html for the root route
+// Serve Pulse briefing page as the main dashboard (BEFORE static middleware)
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pulse.html'));
+});
+
+// Keep old Epic UI accessible at /epic
+app.get('/epic', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Serve Pulse briefing page
-app.get('/pulse', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pulse.html'));
-});
+// Serve static files from the root directory (AFTER explicit routes)
+app.use(express.static(__dirname));
 
 // --- FHIR test route (SMART sandbox) ---
 app.get('/test-fhir', async (req, res) => {

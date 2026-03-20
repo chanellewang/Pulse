@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Load patients from FHIR
+// Load patients from FHIR (with fallback mock data)
 async function loadPatients() {
     try {
         const response = await fetch('/api/test-fhir');
@@ -35,15 +35,56 @@ async function loadPatients() {
         
         if (data.entry && data.entry.length > 0) {
             patients = data.entry.map(entry => entry.resource);
-            renderPatientChips();
-            
-            if (patients.length > 0) {
-                selectPatient(patients[0].id);
-            }
+        } else {
+            patients = getMockPatients();
         }
     } catch (error) {
-        console.error('Error loading patients:', error);
+        console.error('Error loading patients, using mock data:', error);
+        patients = getMockPatients();
     }
+    
+    renderPatientChips();
+    if (patients.length > 0) {
+        selectPatient(patients[0].id);
+    } else {
+        showLoading(false);
+    }
+}
+
+// Mock patient data for demo/fallback
+function getMockPatients() {
+    return [
+        {
+            id: 'demo-1',
+            name: [{ given: ['Margaret', 'M'], family: 'Smith' }],
+            gender: 'female',
+            birthDate: '1958-04-15'
+        },
+        {
+            id: 'demo-2',
+            name: [{ given: ['James', 'R'], family: 'Johnson' }],
+            gender: 'male',
+            birthDate: '1962-11-22'
+        },
+        {
+            id: 'demo-3',
+            name: [{ given: ['Patricia', 'A'], family: 'Williams' }],
+            gender: 'female',
+            birthDate: '1970-07-08'
+        },
+        {
+            id: 'demo-4',
+            name: [{ given: ['Robert', 'L'], family: 'Brown' }],
+            gender: 'male',
+            birthDate: '1955-03-30'
+        },
+        {
+            id: 'demo-5',
+            name: [{ given: ['Linda', 'S'], family: 'Davis' }],
+            gender: 'female',
+            birthDate: '1985-09-12'
+        }
+    ];
 }
 
 // Render patient chips in header

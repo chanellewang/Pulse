@@ -34,7 +34,14 @@ async function loadPatients() {
         const data = await response.json();
         
         if (data.entry && data.entry.length > 0) {
-            patients = data.entry.map(entry => entry.resource);
+            const fhirPatients = data.entry.map(entry => entry.resource);
+            
+            // Check if ALL patients have valid names - use mock data if any names are missing
+            const hasValidNames = fhirPatients.every(p => 
+                p.name && p.name[0] && (p.name[0].given || p.name[0].family)
+            );
+            
+            patients = hasValidNames ? fhirPatients : getMockPatients();
         } else {
             patients = getMockPatients();
         }
